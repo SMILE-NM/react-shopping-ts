@@ -1,4 +1,4 @@
-import CartItem from './CartItem/CartItem';
+import CartItem from '../CartItem/CartItem';
 import { Wrapper } from './Cart.styles';
 import { CartItemType } from '../App';
 
@@ -13,7 +13,14 @@ const Cart: React.FC<Props> = ({ cartItems, addToCart, removeFromCart }) => {
     <Wrapper>
       <h2>Your Shopping Cart</h2>
       {cartItems.length === 0 ? <p>No items in cart.</p> : null}
-      <CartItem />
+      {cartItems.map((item) => (
+        <CartItem
+          key={item.id}
+          item={item}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+        />
+      ))}
     </Wrapper>
   );
 };
